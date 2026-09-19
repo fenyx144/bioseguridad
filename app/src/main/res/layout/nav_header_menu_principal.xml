@@ -48,13 +48,13 @@
         android:layout_height="22dp"
         android:layout_marginEnd="6dp"
         android:contentDescription="@string/menu_Importacion"
-        android:src="@drawable/ia_importar"
+        android:src="@drawable/ic_cloud_download_24"
         app:tint="@color/blanco" />
 
     <ImageView
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:contentDescription="@string/menu_Exportacion"
-        android:src="@drawable/ia_exportar"
+        android:src="@drawable/ic_cloud_upload_24"
         app:tint="@color/blanco" />
 </LinearLayout>
