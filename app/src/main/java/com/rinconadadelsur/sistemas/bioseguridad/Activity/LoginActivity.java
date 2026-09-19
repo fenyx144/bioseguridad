@@ -29,6 +29,9 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /** TODO: poner en false antes de producción — omite Volley/SQLite de login para revisar UI. */
+    private static final boolean DEV_OMITIR_LOGIN_SERVIDOR = true;
+
     ActivityLoginBinding bg;
 
     String sIdAdroid,sUsuario,sPassword;
@@ -69,30 +72,33 @@ public class LoginActivity extends AppCompatActivity {
 
         bg.tvIdandroid.setText(sIdAdroid);
 
+        if (DEV_OMITIR_LOGIN_SERVIDOR) {
+            irAMenuPrincipal("DEV");
+            return;
+        }
+
         bg.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hV.sMiIpDispositivo=hM.getIP();
-                hV.sMiIpConexion=hM.ipConexion(hV.sMiIpDispositivo);
-                hV.sMiURL=hV.sMiSeg+hV.sMiIpConexion+"/"+hV.sMiCarpeta+"/" +hV.phpIngreso ;
+                hV = new hVariables();
+                hV.sMiIpDispositivo = hM.getIP();
+                hV.sMiIpConexion = hM.ipConexion(hV.sMiIpDispositivo);
+                hV.sMiURL = hV.sMiSeg + hV.sMiIpConexion + "/" + hV.sMiCarpeta + "/" + hV.phpIngreso;
 
-
-                String miHora,miDia,miVersion;
+                String miHora, miDia, miVersion;
                 miHora = hM.gethoraActual();
-                miDia =hM.getfechaActual();
-                miVersion=getString(R.string.sVersion);
+                miDia = hM.getfechaActual();
+                miVersion = getString(R.string.sVersion);
 
-                sUsuario=bg.etUsuario.getText().toString();
-                sPassword=bg.etPassword.getText().toString();
-
+                sUsuario = bg.etUsuario.getText().toString();
+                sPassword = bg.etPassword.getText().toString();
 
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.setTitle("Conectando al servidor");
                 progressDialog.setMessage("Validando información...");
                 progressDialog.show();
 
-                validarUsuario(hV.sMiURL+ "?codigo=" + sUsuario + "&password=" + sPassword + "&idandroid=" + sIdAdroid+ "&fecha=" + miDia + "&hora=" + miHora + "&version=" + miVersion);
-
+                validarUsuario(hV.sMiURL + "?codigo=" + sUsuario + "&password=" + sPassword + "&idandroid=" + sIdAdroid + "&fecha=" + miDia + "&hora=" + miHora + "&version=" + miVersion);
             }
         });
 
@@ -106,6 +112,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void irAMenuPrincipal(String clv) {
+        Intent intent = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
+        intent.putExtra("clv", clv);
+        startActivity(intent);
+        finish();
     }
 
     private void validarUsuario(String URL){
