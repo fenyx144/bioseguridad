@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.rinconadadelsur.sistemas.bioseguridad.Conexion.ConexionSQLiteHelper;
 import com.rinconadadelsur.sistemas.bioseguridad.DataBase.dbEstructura;
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.DevDataSeeder;
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos;
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables;
 import com.rinconadadelsur.sistemas.bioseguridad.R;
@@ -72,14 +73,18 @@ public class LoginActivity extends AppCompatActivity {
 
         bg.tvIdandroid.setText(sIdAdroid);
 
-        if (DEV_OMITIR_LOGIN_SERVIDOR) {
-            irAMenuPrincipal("DEV");
-            return;
-        }
-
         bg.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (DEV_OMITIR_LOGIN_SERVIDOR) {
+                    DevDataSeeder.ensureDemoData(LoginActivity.this);
+                    sUsuario = bg.etUsuario.getText().toString().trim();
+                    if (sUsuario.isEmpty()) {
+                        sUsuario = "DEV";
+                    }
+                    irAMenuPrincipal(sUsuario);
+                    return;
+                }
                 hV = new hVariables();
                 hV.sMiIpDispositivo = hM.getIP();
                 hV.sMiIpConexion = hM.ipConexion(hV.sMiIpDispositivo);

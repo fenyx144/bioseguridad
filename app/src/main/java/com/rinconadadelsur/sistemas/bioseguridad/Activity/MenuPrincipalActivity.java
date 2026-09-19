@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.DevDataSeeder;
 import com.rinconadadelsur.sistemas.bioseguridad.R;
 import com.rinconadadelsur.sistemas.bioseguridad.databinding.ActivityMenuPrincipalBinding;
 
@@ -27,6 +28,8 @@ public class MenuPrincipalActivity extends AppCompatActivity {
 
         binding = ActivityMenuPrincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        DevDataSeeder.ensureDemoData(this);
 
         setSupportActionBar(binding.appBarMenuPrincipal.toolbar);
         DrawerLayout drawer = binding.drawerLayout;

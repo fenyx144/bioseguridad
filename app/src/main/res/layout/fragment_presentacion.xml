@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView android:textSize="50.0sp" android:gravity="center" android:id="@+id/cabe" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="BIENVENIDO" />
-    <ImageView android:id="@+id/ivLogo" android:background="@drawable/logito2" android:layout_width="180.0dp" android:layout_height="220.0dp" android:layout_marginTop="15.0sp" android:cropToPadding="true" android:layout_below="@id/cabe" android:layout_centerHorizontal="true" />
+    <ImageView android:id="@+id/ivLogo" android:layout_width="180.0dp" android:layout_height="220.0dp" android:layout_marginTop="15.0sp" android:layout_below="@id/cabe" android:layout_centerHorizontal="true" android:contentDescription="@string/app_name" android:scaleType="fitCenter" app:srcCompat="@drawable/logito2" />
     <TextView android:textSize="24.0sp" android:id="@+id/titulo1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25.0dp" android:text="GRANJA RINCONADA DEL SUR S.A." android:layout_below="@id/ivLogo" android:layout_centerInParent="true" />
     <TextView android:textSize="20.0sp" android:id="@+id/titulo2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BIOSEGURIDAD" android:layout_below="@id/titulo1" android:layout_centerInParent="true" />
 </RelativeLayout>

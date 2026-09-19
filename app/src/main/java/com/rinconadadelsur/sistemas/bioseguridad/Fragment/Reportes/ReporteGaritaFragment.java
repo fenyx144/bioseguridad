@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.rinconadadelsur.sistemas.bioseguridad.Conexion.ConexionSQLiteHelper;
 import com.rinconadadelsur.sistemas.bioseguridad.DataBase.dbEstructura;
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.DevDataSeeder;
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos;
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento;
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables;
@@ -80,6 +81,8 @@ public class ReporteGaritaFragment extends Fragment {
         bg = FragmentReporteGaritaBinding.bind(view);
 
         /*<!-- TODO: DATA -->*/
+        dbE = new dbEstructura();
+        DevDataSeeder.ensureDemoData(requireContext());
         hP = new hProcedimiento(getContext(), dbE.miBaseDatos, null, 1);
         conn = new hProcedimiento(getContext(), dbE.miBaseDatos, null, 1);
         hM = new hMetodos();
@@ -114,7 +117,7 @@ public class ReporteGaritaFragment extends Fragment {
         }
 
         sFecha = bg.tvFecha.getText().toString();
-        sCencos = bg.etCencos.getText().toString().substring(0, 6);
+        sCencos = DevDataSeeder.codigoCencos(bg.etCencos.getText().toString());
         mostrarTotales(sFecha, sCencos);
 
     }
