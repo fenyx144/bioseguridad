@@ -16,7 +16,7 @@
             android:title="@string/menu_Garita" />
         <item
             android:id="@+id/nav_CercoElectrico"
-            android:icon="@drawable/ic_lock"
+            android:icon="@drawable/ic_electric_fence_24"
             android:title="@string/menu_CercoElectrico" />
         <item
             android:id="@+id/nav_Fomites"
@@ -39,18 +39,5 @@
             android:id="@+id/nav_ReporteFomites"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_RepFomites" />
-    </group>
-    <item
-        android:enabled="false"
-        android:title="Base de Datos" />
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_ImportarDB"
-            android:icon="@drawable/ic_cloud_download_24"
-            android:title="@string/menu_Importacion" />
-        <item
-            android:id="@+id/nav_ExportarDB"
-            android:icon="@drawable/ic_cloud_upload_24"
-            android:title="@string/menu_Exportacion" />
     </group>
 </menu>

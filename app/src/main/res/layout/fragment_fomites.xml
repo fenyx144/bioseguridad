@@ -3,12 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
-            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
-                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_date" />
-                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/etCencos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cencos" android:inputType="textPersonName" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_cencos" />
-                </LinearLayout>
-            </TableLayout>
+            <include android:id="@+id/registroCabecera" layout="@layout/include_registro_cabecera" />
             <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
                 <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*" style="@style/MyEditTextStyle">
                     <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -88,6 +83,7 @@
                 <com.google.android.material.textfield.TextInputEditText android:textSize="20.0sp" android:id="@+id/etObservacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapCharacters" />
             </com.google.android.material.textfield.TextInputLayout>
             <include layout="@layout/include_photo_upload" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <LinearLayout android:id="@+id/legacyRegistroFooter" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone">
             <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
                 <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
             </LinearLayout>
@@ -108,6 +104,7 @@
                     <TableLayout android:id="@+id/tlRegFomites" android:layout_width="match_parent" android:layout_height="wrap_content" />
                 </LinearLayout>
             </HorizontalScrollView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -27,7 +27,9 @@ import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eProcesos
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eReferencias
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eRegEliminar
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eTipo
-import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.RegistroCabeceraHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.TransactionFormHost
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables
@@ -36,8 +38,9 @@ import com.rinconadadelsur.sistemas.bioseguridad.databinding.FragmentFomitesBind
 import java.util.Calendar
 import kotlin.math.max
 
-class FomitesFragment : Fragment(), View.OnClickListener {
+class FomitesFragment : Fragment(), View.OnClickListener, TransactionFormHost {
     private var bg: FragmentFomitesBinding? = null
+    private lateinit var photoUpload: PhotoUploadHelper
 
     /*<!-- TODO: VARIABLES G -->*/
     var iPosiRef: Int = -1
@@ -114,6 +117,11 @@ var conn: ConexionSQLiteHelper? = null
     var listaRegEliminar: ArrayList<String?>? = null
     var regEliminarList: ArrayList<eRegEliminar?>? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        photoUpload = PhotoUploadHelper(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -126,7 +134,7 @@ var conn: ConexionSQLiteHelper? = null
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentFomitesBinding.bind(view)
-        PhotoUploadUi.bind(this, view)
+        photoUpload.bind(view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -139,11 +147,17 @@ var conn: ConexionSQLiteHelper? = null
         sSerieDispositivo = hP!!.getSerieDispositivo()
 
         /*<!-- TODO: ASIGNAR VARIABLES -->*/
-        bg!!.tvFecha.setText(sFechaActual)
+        bg!!.registroCabecera.tvFecha.setText(sFechaActual)
 
 
 
-        buscarCencos()
+        RegistroCabeceraHelper.bindFecha(this, bg!!.registroCabecera.tvFecha)
+        RegistroCabeceraHelper.bindCencosDropdown(this, conn!!, bg!!.registroCabecera.etCencos) {
+            sFecha = bg!!.registroCabecera.tvFecha.text.toString()
+            sCencos = RegistroCabeceraHelper.cencosCode(bg!!.registroCabecera.etCencos.text)
+            mostrarTotales(sFecha, sCencos)
+            listaItems(sFecha, sCencos)
+        }
         buscarReferencia()
         buscarProceso()
         buscarZ()
@@ -311,8 +325,8 @@ var conn: ConexionSQLiteHelper? = null
                 l: Long
             ) {
                 iPosiTur = position
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 mostrarTotales(sFecha, sCencos)
                 listaItems(sFecha, sCencos)
             }
@@ -616,8 +630,8 @@ var conn: ConexionSQLiteHelper? = null
             }
         })
 
-        sFecha = bg!!.tvFecha.getText().toString()
-        sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+        sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+        sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
         mostrarTotales(sFecha, sCencos)
         listaItems(sFecha, sCencos)
 
@@ -642,8 +656,8 @@ var conn: ConexionSQLiteHelper? = null
                             toast.show()
                         } else {
                             //Eliminar Registro
-                            val slFecha = bg!!.tvFecha.getText().toString()
-                            val slCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                            val slFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                            val slCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                             val slId = regEliminarList!!.get(iPosEli)!!.get_id()
 
                             val rMensaje = hP!!.getElimarRegistro(
@@ -663,8 +677,8 @@ var conn: ConexionSQLiteHelper? = null
                             toast.show()
 
 
-                            sFecha = bg!!.tvFecha.getText().toString()
-                            sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                            sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                            sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                             mostrarTotales(sFecha, sCencos)
                             listaItems(sFecha, sCencos)
                         }
@@ -857,7 +871,7 @@ var conn: ConexionSQLiteHelper? = null
             if (cursor != null) {
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
-                        bg!!.etCencos.setText(cursor.getString(0) + " - " + cursor.getString(1))
+                        bg!!.registroCabecera.etCencos.setText(cursor.getString(0) + " - " + cursor.getString(1))
                     }
                     cursor.close()
                 } else {
@@ -867,7 +881,7 @@ var conn: ConexionSQLiteHelper? = null
                         Toast.LENGTH_SHORT
                     )
                     toast.show()
-                    bg!!.etCencos.setText("")
+                    bg!!.registroCabecera.etCencos.setText("")
                 }
             }
         } catch (ex: Exception) {
@@ -877,7 +891,7 @@ var conn: ConexionSQLiteHelper? = null
                 Toast.LENGTH_SHORT
             )
             toast.show()
-            bg!!.etCencos.setText("")
+            bg!!.registroCabecera.etCencos.setText("")
         }
     }
 
@@ -1295,7 +1309,7 @@ var conn: ConexionSQLiteHelper? = null
         //Todo:MAXIMO REGISTRO
         try {
             sql =
-                "SELECT MAX(ABS(" + dbEstructura.c_rfId + "))  FROM " + dbEstructura.t_RFomites + " WHERE " + dbEstructura.c_rfFecha + "='" + bg!!.tvFecha.getText()
+                "SELECT MAX(ABS(" + dbEstructura.c_rfId + "))  FROM " + dbEstructura.t_RFomites + " WHERE " + dbEstructura.c_rfFecha + "='" + bg!!.registroCabecera.tvFecha.getText()
                     .toString() + "';"
             val cursor1 = db!!.rawQuery(sql!!, null)
             if (cursor1 != null) {
@@ -1318,8 +1332,8 @@ var conn: ConexionSQLiteHelper? = null
             }
 
             //Todo:Agregamos campos generales a la Tabla
-            sFecha = bg!!.tvFecha.getText().toString()
-            sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+            sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+            sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
             sTurno = bg!!.spnTurno.getText().toString()
             sReferencia = ReferenciaList!!.get(iPosiRef)!!.get_descripcion()
             sProceso = ProcesoList!!.get(iPosiPro)!!.get_descripcion()
@@ -1468,7 +1482,7 @@ var conn: ConexionSQLiteHelper? = null
         db = conn!!.getReadableDatabase()
         //PARA FILTRAR TABLA
         sTurno = bg!!.spnTurno.getText().toString()
-        sFecha = bg!!.tvFecha.getText().toString()
+        sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
         try {
             sql =
                 "SELECT " + dbEstructura.c_rfId + "," + dbEstructura.c_rfFecha + "," + dbEstructura.c_rfTurno +
@@ -1547,7 +1561,7 @@ var conn: ConexionSQLiteHelper? = null
         db = conn!!.getReadableDatabase()
         //PARA FILTRAR TABLA
         sTurno = bg!!.spnTurno.getText().toString()
-        sFecha = bg!!.tvFecha.getText().toString()
+        sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
 
         var regEliminar: eRegEliminar? = null
         regEliminarList = ArrayList<eRegEliminar?>()
@@ -1654,8 +1668,8 @@ var conn: ConexionSQLiteHelper? = null
             }
 
             v.id == R.id.btnAgregar -> {
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 if (iPosiTur == -1) {
                     val toast = Toast.makeText(
                         getActivity()!!.getApplicationContext(),
@@ -1808,5 +1822,24 @@ var conn: ConexionSQLiteHelper? = null
                 }
             }
         }
+    }
+
+    override fun formTitle(): String = "Resumen — Fómites"
+
+    override fun summaryLines(): List<Pair<String, String>> {
+        val b = bg ?: return emptyList()
+        return listOf(
+            "Fecha" to b.registroCabecera.tvFecha.text.toString(),
+            "Centro de costos" to b.registroCabecera.etCencos.text.toString(),
+            "Turno" to b.spnTurno.text.toString(),
+            "Referencia" to b.spnReferencia.text.toString(),
+            "Proceso" to b.spnProceso.text.toString(),
+            "Observación" to b.etObservacion.text.toString()
+        )
+    }
+
+    override fun performSave(): Boolean {
+        bg?.btnAgregar?.performClick()
+        return true
     }
 }

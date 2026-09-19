@@ -1,5 +1,7 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones
-import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.RegistroCabeceraHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.TransactionFormHost
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.UiAdapters
 
 import android.app.TimePickerDialog
@@ -34,8 +36,9 @@ import com.rinconadadelsur.sistemas.bioseguridad.databinding.FragmentGaritaBindi
 import java.util.Calendar
 import kotlin.math.max
 
-class GaritaFragment : Fragment() {
+class GaritaFragment : Fragment(), TransactionFormHost {
     private var bg: FragmentGaritaBinding? = null
+    private lateinit var photoUpload: PhotoUploadHelper
 
     /*<!-- TODO: VARIABLES G -->*/
     var iHora: Int? = null
@@ -92,6 +95,11 @@ var conn: ConexionSQLiteHelper? = null
     var regEliminarList: ArrayList<eRegEliminar?>? = null
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        photoUpload = PhotoUploadHelper(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -104,7 +112,7 @@ var conn: ConexionSQLiteHelper? = null
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentGaritaBinding.bind(view)
-        PhotoUploadUi.bind(this, view)
+        photoUpload.bind(view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -118,7 +126,7 @@ var conn: ConexionSQLiteHelper? = null
         sSerieDispositivo = hP!!.getSerieDispositivo()
 
         /*<!-- TODO: ASIGNAR VARIABLES -->*/
-        bg!!.tvFecha.setText(sFechaActual)
+        bg!!.registroCabecera.tvFecha.setText(sFechaActual)
 
         /*<!-- TODO: CREAR CABECERA TABLA CONSUMO ALIMENTO: -->*/
         try {
@@ -153,7 +161,13 @@ var conn: ConexionSQLiteHelper? = null
 
 
 
-        buscarCencos()
+        RegistroCabeceraHelper.bindFecha(this, bg!!.registroCabecera.tvFecha)
+        RegistroCabeceraHelper.bindCencosDropdown(this, conn!!, bg!!.registroCabecera.etCencos) {
+            sFecha = bg!!.registroCabecera.tvFecha.text.toString()
+            sCencos = RegistroCabeceraHelper.cencosCode(bg!!.registroCabecera.etCencos.text)
+            mostrarTotales(sFecha, sCencos)
+            listaItems(sFecha, sCencos)
+        }
         buscarAnomalias()
 
         /*<!-- TODO: CARGA DE DATA SPINNER ARRAY -->*/
@@ -228,8 +242,8 @@ var conn: ConexionSQLiteHelper? = null
             override fun onTextChanged(charSequence: CharSequence?, i: Int, i1: Int, i2: Int) {
                 bg!!.tvTurno.setErrorEnabled(false)
 
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 mostrarTotales(sFecha, sCencos)
                 listaItems(sFecha, sCencos)
             }
@@ -244,8 +258,8 @@ var conn: ConexionSQLiteHelper? = null
             override fun onTextChanged(charSequence: CharSequence?, i: Int, i1: Int, i2: Int) {
                 bg!!.tvNumFiltro.setErrorEnabled(false)
 
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 mostrarTotales(sFecha, sCencos)
                 listaItems(sFecha, sCencos)
             }
@@ -298,65 +312,7 @@ var conn: ConexionSQLiteHelper? = null
 
 
         /*<!-- TODO: CLICK AL BOTON AGREGAR -->*/
-        bg!!.btnAgregar.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
-
-
-                var bValidaCampos = true
-                if (iPosiTur == -1) {
-                    bValidaCampos = false
-                    bg!!.tvTurno.setError("Turno Ivalido!")
-                    bg!!.spnTurno.setError(null)
-                } else {
-                    bg!!.tvTurno.setError(null)
-                }
-
-                if (iPosiFil == -1) {
-                    bValidaCampos = false
-                    bg!!.tvNumFiltro.setError("N°Filtro Ivalido!")
-                    bg!!.spnNumFiltro.setError(null)
-                } else {
-                    bg!!.tvNumFiltro.setError(null)
-                }
-
-                if (iPosiAn == -1) {
-                    bValidaCampos = false
-                    bg!!.tvAnomalia.setError("Anomalía Ivalida!")
-                    bg!!.spnAnomalia.setError(null)
-                } else {
-                    bg!!.tvAnomalia.setError(null)
-                }
-
-                if (bg!!.etHora.getText().toString().trim { it <= ' ' }
-                        .equals("00:00", ignoreCase = true)) {
-                    bValidaCampos = false
-                    bg!!.tvHora.setError("Ingrese Hora!")
-                    bg!!.etHora.setError(null)
-                } else {
-                    bg!!.tvHora.setError(null)
-                }
-
-                if (bg!!.etDescripcion.getText().toString() == "") {
-                    bValidaCampos = false
-                    //bg.tvDescripcion.setError("Ingrese la descripción!");
-                    bg!!.etDescripcion.setError("Ingrese la descripción!")
-                }
-                if (bg!!.etAgenteCausal.getText().toString() == "") {
-                    bValidaCampos = false
-                    //bg.tvAgenteCausal.setError("Ingrese el Agente Causal!");
-                    bg!!.etAgenteCausal.setError("Ingrese el Agente Causal!")
-                }
-
-                if (bValidaCampos == true) {
-                    guardarDatos()
-                    mostrarTotales(sFecha, sCencos)
-                    listaItems(sFecha, sCencos)
-                    inicializarCampos()
-                }
-            }
-        })
+        bg!!.btnAgregar.setOnClickListener { performSave() }
 
         bg!!.btnEliminar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
@@ -379,8 +335,8 @@ var conn: ConexionSQLiteHelper? = null
                             toast.show()
                         } else {
                             //Eliminar Registro
-                            val slFecha = bg!!.tvFecha.getText().toString()
-                            val slCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                            val slFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                            val slCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                             val slId = regEliminarList!!.get(iPosEli)!!.get_id()
 
                             val rMensaje = hP!!.getElimarRegistro(
@@ -400,8 +356,8 @@ var conn: ConexionSQLiteHelper? = null
                             toast.show()
 
 
-                            sFecha = bg!!.tvFecha.getText().toString()
-                            sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                            sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                            sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                             mostrarTotales(sFecha, sCencos)
                             listaItems(sFecha, sCencos)
                         }
@@ -437,7 +393,7 @@ var conn: ConexionSQLiteHelper? = null
             if (cursor != null) {
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
-                        bg!!.etCencos.setText(cursor.getString(0) + "|" + cursor.getString(1))
+                        bg!!.registroCabecera.etCencos.setText(cursor.getString(0) + "|" + cursor.getString(1))
                     }
                     cursor.close()
                 } else {
@@ -447,7 +403,7 @@ var conn: ConexionSQLiteHelper? = null
                         Toast.LENGTH_SHORT
                     )
                     toast.show()
-                    bg!!.etCencos.setText("")
+                    bg!!.registroCabecera.etCencos.setText("")
                 }
             }
         } catch (ex: Exception) {
@@ -457,7 +413,7 @@ var conn: ConexionSQLiteHelper? = null
                 Toast.LENGTH_SHORT
             )
             toast.show()
-            bg!!.etCencos.setText("")
+            bg!!.registroCabecera.etCencos.setText("")
         }
     }
 
@@ -512,7 +468,7 @@ var conn: ConexionSQLiteHelper? = null
         //Todo:MAXIMO REGISTRO
         try {
             querys =
-                "SELECT MAX(ABS(" + dbEstructura.c_rgId + "))  FROM " + dbEstructura.t_RGarita + " WHERE " + dbEstructura.c_rgFecha + "='" + bg!!.tvFecha.getText()
+                "SELECT MAX(ABS(" + dbEstructura.c_rgId + "))  FROM " + dbEstructura.t_RGarita + " WHERE " + dbEstructura.c_rgFecha + "='" + bg!!.registroCabecera.tvFecha.getText()
                     .toString() + "';"
             val cursor1 = db!!.rawQuery(querys!!, null)
             if (cursor1 != null) {
@@ -532,9 +488,9 @@ var conn: ConexionSQLiteHelper? = null
 
 
             //Todo:Agregamos campos generales a la Tabla
-            sFecha = bg!!.tvFecha.getText().toString()
+            sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
             sColaborador = hP!!.getNombreUsuario() //bg.tvNombreUsuario.getText().toString();
-            sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+            sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
             sTurno = bg!!.spnTurno.getText().toString()
             sFiltro = bg!!.spnNumFiltro.getText().toString()
             sAnomalia = bg!!.spnAnomalia.getText()
@@ -712,5 +668,69 @@ var conn: ConexionSQLiteHelper? = null
             )
             toast.show()
         }
+    }
+
+    override fun formTitle(): String = "Resumen — Garita"
+
+    override fun summaryLines(): List<Pair<String, String>> {
+        val b = bg ?: return emptyList()
+        return listOf(
+            "Fecha" to b.registroCabecera.tvFecha.text.toString(),
+            "Centro de costos" to b.registroCabecera.etCencos.text.toString(),
+            "Turno" to b.spnTurno.text.toString(),
+            "N° Filtro" to b.spnNumFiltro.text.toString(),
+            "Anomalía" to b.spnAnomalia.text.toString(),
+            "Hora" to b.etHora.text.toString(),
+            "Descripción" to b.etDescripcion.text.toString(),
+            "Agente causal" to b.etAgenteCausal.text.toString()
+        )
+    }
+
+    override fun performSave(): Boolean {
+        if (bg == null) return false
+        sFecha = bg!!.registroCabecera.tvFecha.text.toString()
+        sCencos = RegistroCabeceraHelper.cencosCode(bg!!.registroCabecera.etCencos.text)
+
+        var bValidaCampos = true
+        if (iPosiTur == -1) {
+            bValidaCampos = false
+            bg!!.tvTurno.error = "Turno Ivalido!"
+        } else {
+            bg!!.tvTurno.error = null
+        }
+        if (iPosiFil == -1) {
+            bValidaCampos = false
+            bg!!.tvNumFiltro.error = "N°Filtro Ivalido!"
+        } else {
+            bg!!.tvNumFiltro.error = null
+        }
+        if (iPosiAn == -1) {
+            bValidaCampos = false
+            bg!!.tvAnomalia.error = "Anomalía Ivalida!"
+        } else {
+            bg!!.tvAnomalia.error = null
+        }
+        if (bg!!.etHora.text.toString().trim().equals("00:00", ignoreCase = true)) {
+            bValidaCampos = false
+            bg!!.tvHora.error = "Ingrese Hora!"
+        } else {
+            bg!!.tvHora.error = null
+        }
+        if (bg!!.etDescripcion.text.toString().isEmpty()) {
+            bValidaCampos = false
+            bg!!.etDescripcion.error = "Ingrese la descripción!"
+        }
+        if (bg!!.etAgenteCausal.text.toString().isEmpty()) {
+            bValidaCampos = false
+            bg!!.etAgenteCausal.error = "Ingrese el Agente Causal!"
+        }
+        if (!bValidaCampos) return false
+
+        guardarDatos()
+        mostrarTotales(sFecha, sCencos)
+        listaItems(sFecha, sCencos)
+        inicializarCampos()
+        Toast.makeText(requireContext(), "Registro guardado", Toast.LENGTH_SHORT).show()
+        return true
     }
 }

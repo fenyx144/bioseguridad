@@ -20,7 +20,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.rinconadadelsur.sistemas.bioseguridad.Conexion.ConexionSQLiteHelper
 import com.rinconadadelsur.sistemas.bioseguridad.DataBase.dbEstructura
-import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.RegistroCabeceraHelper
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.TransactionFormHost
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables
@@ -30,8 +32,9 @@ import java.util.Calendar
 import kotlin.math.max
 
 class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
-    : Fragment(), View.OnClickListener {
+    : Fragment(), View.OnClickListener, TransactionFormHost {
     private var bg: FragmentCercoElectricoBinding? = null
+    private lateinit var photoUpload: PhotoUploadHelper
 
     /*<!-- TODO: VARIABLES G -->*/
     var iHora: Int? = null
@@ -90,6 +93,11 @@ var conn: ConexionSQLiteHelper? = null
     var querys: String? = null
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        photoUpload = PhotoUploadHelper(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -102,7 +110,7 @@ var conn: ConexionSQLiteHelper? = null
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentCercoElectricoBinding.bind(view)
-        PhotoUploadUi.bind(this, view)
+        photoUpload.bind(view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -115,11 +123,11 @@ var conn: ConexionSQLiteHelper? = null
         sSerieDispositivo = hP!!.getSerieDispositivo()
 
         /*<!-- TODO: ASIGNAR VARIABLES -->*/
-        bg!!.tvFecha.setText(sFechaActual)
+        bg!!.registroCabecera.tvFecha.setText(sFechaActual)
 
 
-        /*<!-- TODO: OCULTAR TABLAS -->*/
-        buscarCencos()
+        RegistroCabeceraHelper.bindFecha(this, bg!!.registroCabecera.tvFecha)
+        RegistroCabeceraHelper.bindCencosDropdown(this, conn!!, bg!!.registroCabecera.etCencos, null)
 
         /*<!-- TODO: BOTONES -->*/
         //bg.swtEstadoDer.setOnClickListener(this);
@@ -161,8 +169,8 @@ var conn: ConexionSQLiteHelper? = null
                 l: Long
             ) {
                 iPosiTur = position
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 mostrarTotales(sFecha, sCencos)
             }
         })
@@ -402,7 +410,7 @@ var conn: ConexionSQLiteHelper? = null
             if (cursor != null) {
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
-                        bg!!.etCencos.setText(cursor.getString(0) + " - " + cursor.getString(1))
+                        bg!!.registroCabecera.etCencos.setText(cursor.getString(0) + " - " + cursor.getString(1))
                     }
                     cursor.close()
                 } else {
@@ -412,7 +420,7 @@ var conn: ConexionSQLiteHelper? = null
                         Toast.LENGTH_SHORT
                     )
                     toast.show()
-                    bg!!.etCencos.setText("")
+                    bg!!.registroCabecera.etCencos.setText("")
                 }
             }
         } catch (ex: Exception) {
@@ -422,13 +430,13 @@ var conn: ConexionSQLiteHelper? = null
                 Toast.LENGTH_SHORT
             )
             toast.show()
-            bg!!.etCencos.setText("")
+            bg!!.registroCabecera.etCencos.setText("")
         }
     }
 
     private fun guardarDatos() {
-        sFecha = bg!!.tvFecha.getText().toString()
-        sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+        sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+        sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
         sTurno = bg!!.spnTurno.getText().toString()
         sEvaluador = hP!!.getNombreUsuario() //bg.tvNombreUsuario.getText().toString();
 
@@ -814,8 +822,8 @@ var conn: ConexionSQLiteHelper? = null
             }
 
             v.id == R.id.btnAgregar -> {
-                sFecha = bg!!.tvFecha.getText().toString()
-                sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
+                sFecha = bg!!.registroCabecera.tvFecha.getText().toString()
+                sCencos = bg!!.registroCabecera.etCencos.getText().toString().substring(0, 6)
                 if (iPosiTur == -1) {
                     val toast = Toast.makeText(
                         getActivity()!!.getApplicationContext(),
@@ -955,5 +963,25 @@ var conn: ConexionSQLiteHelper? = null
                 }
             }
         }
+    }
+
+    override fun formTitle(): String = "Resumen — Cerco eléctrico"
+
+    override fun summaryLines(): List<Pair<String, String>> {
+        val b = bg ?: return emptyList()
+        return listOf(
+            "Fecha" to b.registroCabecera.tvFecha.text.toString(),
+            "Centro de costos" to b.registroCabecera.etCencos.text.toString(),
+            "Turno" to b.spnTurno.text.toString(),
+            "Estado izquierda" to b.spnIzquierda.text.toString(),
+            "Estado derecha" to b.spnDerecha.text.toString(),
+            "Hora inicio" to b.etHoraIni.text.toString(),
+            "Hora fin" to b.etHoraFin.text.toString()
+        )
+    }
+
+    override fun performSave(): Boolean {
+        bg?.btnAgregar?.performClick()
+        return true
     }
 }
