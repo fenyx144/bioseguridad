@@ -6,5 +6,6 @@
         android:icon="@drawable/ic_save_24"
         android:title="Guardar"
         android:visible="false"
+        app:iconTint="@color/white"
         app:showAsAction="always" />
 </menu>

@@ -4,15 +4,16 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.rinconadadelsur.sistemas.bioseguridad.DataBase.dbEstructura
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.DevDataSeeder.ensureDemoData
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.ModernDrawerMenu
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.RegistroSummaryDialog
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.TransactionFormHost
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento
@@ -35,7 +36,6 @@ class MenuPrincipalActivity : AppCompatActivity(), RegistroSummaryDialog.Listene
 
         setSupportActionBar(binding!!.appBarMenuPrincipal.toolbar)
         val drawer = binding!!.drawerLayout
-        val navigationView = binding!!.navView
         mAppBarConfiguration = AppBarConfiguration.Builder(R.id.nav_presentacion)
             .setOpenableLayout(drawer)
             .build()
@@ -43,9 +43,11 @@ class MenuPrincipalActivity : AppCompatActivity(), RegistroSummaryDialog.Listene
             (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_menu_principal) as NavHostFragment)
                 .navController
         setupActionBarWithNavController(this, navController, mAppBarConfiguration!!)
-        setupWithNavController(navigationView, navController)
 
-        setupDrawerHeader(navigationView)
+        setupDrawerHeader()
+        val menuList = findViewById<LinearLayout>(R.id.drawerMenuList)
+        ModernDrawerMenu.bind(menuList, navController, drawer)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val showSave = destination.id == R.id.nav_Garita ||
                 destination.id == R.id.nav_CercoElectrico ||
@@ -54,8 +56,8 @@ class MenuPrincipalActivity : AppCompatActivity(), RegistroSummaryDialog.Listene
         }
     }
 
-    private fun setupDrawerHeader(navigationView: com.google.android.material.navigation.NavigationView) {
-        val header = navigationView.getHeaderView(0)
+    private fun setupDrawerHeader() {
+        val header = findViewById<android.view.View>(R.id.drawerHeader)
         val hp = hProcedimiento(this, dbEstructura.miBaseDatos, null, 1)
         header.findViewById<TextView>(R.id.tvDrawerUserName)?.text =
             hp.getNombreUsuario()?.uppercase().orEmpty().ifBlank { "USUARIO" }
