@@ -44,6 +44,7 @@
                     <com.google.android.material.textfield.TextInputEditText android:textSize="15.0sp" android:id="@+id/etAgenteCausal" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapSentences" />
                 </com.google.android.material.textfield.TextInputLayout>
             </TableLayout>
+            <include layout="@layout/include_photo_upload" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
                 <Button android:textSize="15.0sp" android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
             </LinearLayout>

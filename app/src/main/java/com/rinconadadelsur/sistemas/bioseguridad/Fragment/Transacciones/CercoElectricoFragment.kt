@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.rinconadadelsur.sistemas.bioseguridad.Conexion.ConexionSQLiteHelper
 import com.rinconadadelsur.sistemas.bioseguridad.DataBase.dbEstructura
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables
@@ -84,8 +85,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
     var hV: hVariables? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var querys: String? = null
 
@@ -102,6 +102,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentCercoElectricoBinding.bind(view)
+        PhotoUploadUi.bind(this, view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -718,8 +719,8 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
 
 
     override fun onClick(v: View) {
-        when (v.getId()) {
-            R.id.swtArgolla -> if (bg!!.swtArgolla.isChecked()) {
+        when {
+            v.id == R.id.swtArgolla -> if (bg!!.swtArgolla.isChecked()) {
                 bg!!.swtArgolla.setText("Si")
                 bg!!.etArgolla.setEnabled(true)
             } else {
@@ -728,7 +729,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etArgolla.setText("")
             }
 
-            R.id.swtBateria -> if (bg!!.swtBateria.isChecked()) {
+            v.id == R.id.swtBateria -> if (bg!!.swtBateria.isChecked()) {
                 bg!!.swtBateria.setText("Si")
                 bg!!.etBateria.setEnabled(true)
             } else {
@@ -737,7 +738,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etBateria.setText("")
             }
 
-            R.id.swtFocoTablero -> if (bg!!.swtFocoTablero.isChecked()) {
+            v.id == R.id.swtFocoTablero -> if (bg!!.swtFocoTablero.isChecked()) {
                 bg!!.swtFocoTablero.setText("Si")
                 bg!!.etFocoTablero.setEnabled(true)
             } else {
@@ -746,7 +747,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etFocoTablero.setText("")
             }
 
-            R.id.swtLineas -> if (bg!!.swtLineas.isChecked()) {
+            v.id == R.id.swtLineas -> if (bg!!.swtLineas.isChecked()) {
                 bg!!.swtLineas.setText("Si")
                 bg!!.etLineas.setEnabled(true)
             } else {
@@ -755,7 +756,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etLineas.setText("")
             }
 
-            R.id.swtPina -> if (bg!!.swtPina.isChecked()) {
+            v.id == R.id.swtPina -> if (bg!!.swtPina.isChecked()) {
                 bg!!.swtPina.setText("Si")
                 bg!!.etPina.setEnabled(true)
             } else {
@@ -764,7 +765,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etPina.setText("")
             }
 
-            R.id.swtSirena -> if (bg!!.swtSirena.isChecked()) {
+            v.id == R.id.swtSirena -> if (bg!!.swtSirena.isChecked()) {
                 bg!!.swtSirena.setText("Si")
                 bg!!.etSirena.setEnabled(true)
             } else {
@@ -773,7 +774,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etSirena.setText("")
             }
 
-            R.id.swtTablero -> if (bg!!.swtTablero.isChecked()) {
+            v.id == R.id.swtTablero -> if (bg!!.swtTablero.isChecked()) {
                 bg!!.swtTablero.setText("Si")
                 bg!!.etTablero.setEnabled(true)
             } else {
@@ -782,7 +783,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTablero.setText("")
             }
 
-            R.id.swtTempladorAislador -> if (bg!!.swtTempladorAislador.isChecked()) {
+            v.id == R.id.swtTempladorAislador -> if (bg!!.swtTempladorAislador.isChecked()) {
                 bg!!.swtTempladorAislador.setText("Si")
                 bg!!.etTempladorAislador.setEnabled(true)
             } else {
@@ -791,7 +792,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTempladorAislador.setText("")
             }
 
-            R.id.swtTransformador -> if (bg!!.swtTransformador.isChecked()) {
+            v.id == R.id.swtTransformador -> if (bg!!.swtTransformador.isChecked()) {
                 bg!!.swtTransformador.setText("Si")
                 bg!!.etTransformador.setEnabled(true)
             } else {
@@ -800,7 +801,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTransformador.setText("")
             }
 
-            R.id.swtOtros -> if (bg!!.swtOtros.isChecked()) {
+            v.id == R.id.swtOtros -> if (bg!!.swtOtros.isChecked()) {
                 bg!!.swtOtros.setText("Si")
                 bg!!.etOtros.setEnabled(true)
                 bg!!.etDescOtros.setEnabled(true)
@@ -812,7 +813,7 @@ class CercoElectricoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etDescOtros.setText("")
             }
 
-            R.id.btnAgregar -> {
+            v.id == R.id.btnAgregar -> {
                 sFecha = bg!!.tvFecha.getText().toString()
                 sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
                 if (iPosiTur == -1) {

@@ -117,7 +117,7 @@ class RegistrarDispositivoAndroidActivity : AppCompatActivity() {
         sCerrar: String?
     ) {
         val stringRequest: StringRequest =
-            object : StringRequest(Method.POST, URL, object : Response.Listener<String?> {
+            object : StringRequest(Method.POST, URL, object : Response.Listener<String> {
                 override fun onResponse(response: String) {
                     if (response.contains("Existente")) {
                         iCouE = iCouE!! + 1

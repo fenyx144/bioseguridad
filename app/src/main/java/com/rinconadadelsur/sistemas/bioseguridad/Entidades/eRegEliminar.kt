@@ -1,29 +1,25 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Entidades
 
 class eRegEliminar {
-    var _id: String? = null
-    var _descripcion: String? = null
+    private var idValue: String? = null
+    private var descripcionValue: String? = null
 
-    constructor(_id: String?, _descripcion: String?) {
-        this._id = _id
-        this._descripcion = _descripcion
+    constructor(id: String?, descripcion: String?) {
+        idValue = id
+        descripcionValue = descripcion
     }
 
     constructor()
 
-    fun get_id(): String? {
-        return _id
+    fun get_id(): String? = idValue
+
+    fun set_id(value: String?) {
+        idValue = value
     }
 
-    fun set_id(_id: String?) {
-        this._id = _id
-    }
+    fun get_descripcion(): String? = descripcionValue
 
-    fun get_descripcion(): String? {
-        return _descripcion
-    }
-
-    fun set_descripcion(_descripcion: String?) {
-        this._descripcion = _descripcion
+    fun set_descripcion(value: String?) {
+        descripcionValue = value
     }
 }

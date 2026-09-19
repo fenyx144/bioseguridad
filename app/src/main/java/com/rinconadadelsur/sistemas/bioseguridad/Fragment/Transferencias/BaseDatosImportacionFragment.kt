@@ -1,4 +1,5 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transferencias
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.UiAdapters
 
 import android.app.ProgressDialog
 import android.database.sqlite.SQLiteDatabase
@@ -79,8 +80,7 @@ class BaseDatosImportacionFragment : Fragment() {
     var sGalpon: String? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var insertar: String? = null
 
@@ -144,7 +144,7 @@ class BaseDatosImportacionFragment : Fragment() {
                 if (position != 0) {
                     iPosiCen = position - 1
                     bg!!.btnImportar.setEnabled(true)
-                    xCencos = cencosList!!.get(iPosiCen)!!.getC_cencos().substring(0, 6)
+                    xCencos = cencosList!![iPosiCen]!!.c_cencos!!.substring(0, 6)
                     sCencos = xCencos
                 } else {
                     iPosiCen = -1
@@ -188,21 +188,20 @@ class BaseDatosImportacionFragment : Fragment() {
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
                         cencos = eCencos()
-                        cencos.setC_cencos(cursor.getString(0))
-                        cencos.setC_nombre(cursor.getString(1))
+                        cencos.c_cencos = cursor.getString(0)
+                        cencos.c_nombre = cursor.getString(1)
                         cencosList!!.add(cencos)
                     }
 
                     for (i in cencosList!!.indices) {
                         listaCencos!!.add(
-                            cencosList!!.get(i)!!.getC_cencos() + " | " + cencosList!!.get(i)!!
-                                .getC_nombre()
+                            cencosList!!.get(i)!!.c_cencos + " | " + cencosList!!.get(i)!!
+                                .c_nombre
                         )
                     }
 
-                    val adaptador: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listaCencos)
-                    bg!!.spnCencos.setAdapter<ArrayAdapter<CharSequence?>?>(adaptador)
+                    val adaptador = UiAdapters.spinner(requireContext(), listaCencos)
+                    bg!!.spnCencos.setAdapter(adaptador)
                     cursor.close()
                     db!!.close()
                 } else {
@@ -227,7 +226,7 @@ class BaseDatosImportacionFragment : Fragment() {
     private fun importarDatos(URL: String?) {
         val requestBody = ""
 
-        val jsonArrayRequest = JsonArrayRequest(URL, object : Response.Listener<JSONArray?> {
+        val jsonArrayRequest = JsonArrayRequest(URL, object : Response.Listener<JSONArray> {
             override fun onResponse(response: JSONArray) {
                 try {
                     var jsonObject: JSONObject? = null

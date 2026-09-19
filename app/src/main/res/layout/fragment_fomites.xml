@@ -87,6 +87,7 @@
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvObservacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dp" android:hint="Observación" android:textAlignment="textStart" android:layout_marginEnd="5.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText android:textSize="20.0sp" android:id="@+id/etObservacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapCharacters" />
             </com.google.android.material.textfield.TextInputLayout>
+            <include layout="@layout/include_photo_upload" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
                 <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
             </LinearLayout>

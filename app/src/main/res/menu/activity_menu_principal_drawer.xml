@@ -12,20 +12,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_Garita"
-            android:icon="@drawable/ic_account_box"
-            android:title="Garita" />
-        <item
-            android:id="@+id/nav_Mantenimiento"
-            android:icon="@drawable/ic_info_24"
-            android:title="Mantenimiento" />
+            android:icon="@drawable/ia_garita"
+            android:title="@string/menu_Garita" />
         <item
             android:id="@+id/nav_CercoElectrico"
-            android:icon="@drawable/ic_lock"
-            android:title="Cerco Electrico" />
+            android:icon="@drawable/ia_cerco"
+            android:title="@string/menu_CercoElectrico" />
         <item
             android:id="@+id/nav_Fomites"
-            android:icon="@drawable/ic_favorite"
-            android:title="Fomites" />
+            android:icon="@drawable/ia_fomites"
+            android:title="@string/menu_Fomites" />
     </group>
     <item
         android:enabled="false"
@@ -33,20 +29,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_ReporteGarita"
-            android:icon="@drawable/ic_date"
-            android:title="Reportes de Garita" />
-        <item
-            android:id="@+id/nav_ReporteMantenimiento"
-            android:icon="@drawable/ic_date"
-            android:title="Reportes de Mantenimiento" />
+            android:icon="@drawable/ia_reporte"
+            android:title="@string/menu_RepGarita" />
         <item
             android:id="@+id/nav_ReporteCerco"
-            android:icon="@drawable/ic_date"
-            android:title="Reportes de Cerco Electrico" />
+            android:icon="@drawable/ia_reporte"
+            android:title="@string/menu_RepCercoElectrico" />
         <item
             android:id="@+id/nav_ReporteFomites"
-            android:icon="@drawable/ic_date"
-            android:title="Reportes de Fomites" />
+            android:icon="@drawable/ia_reporte"
+            android:title="@string/menu_RepFomites" />
     </group>
     <item
         android:enabled="false"
@@ -55,10 +47,10 @@
         <item
             android:id="@+id/nav_ImportarDB"
             android:icon="@drawable/ia_importar"
-            android:title="Importar" />
+            android:title="@string/menu_Importacion" />
         <item
             android:id="@+id/nav_ExportarDB"
             android:icon="@drawable/ia_exportar"
-            android:title="Exportar" />
+            android:title="@string/menu_Exportacion" />
     </group>
 </menu>

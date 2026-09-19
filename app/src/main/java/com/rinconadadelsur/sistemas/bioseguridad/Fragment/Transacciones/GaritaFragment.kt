@@ -1,4 +1,6 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.UiAdapters
 
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
@@ -78,8 +80,7 @@ class GaritaFragment : Fragment() {
     var hV: hVariables? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var querys: String? = null
 
@@ -103,6 +104,7 @@ class GaritaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentGaritaBinding.bind(view)
+        PhotoUploadUi.bind(this, view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -481,9 +483,8 @@ class GaritaFragment : Fragment() {
                     for (i in anomaliasList!!.indices) {
                         listaAnomalias!!.add(anomaliasList!!.get(i)!!.get_descripcion())
                     }
-                    val adaptador: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listaAnomalias)
-                    bg!!.spnAnomalia.setAdapter<ArrayAdapter<CharSequence?>?>(adaptador)
+                    val adaptador = UiAdapters.spinner(requireContext(), listaAnomalias)
+                    bg!!.spnAnomalia.setAdapter(adaptador)
                     cursor.close()
                     db!!.close()
                 } else {
@@ -697,9 +698,8 @@ class GaritaFragment : Fragment() {
                                 .get_descripcion()
                         )
                     }
-                    val adaptador: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listaRegEliminar)
-                    bg!!.spnEliminar.setAdapter<ArrayAdapter<CharSequence?>?>(adaptador)
+                    val adaptador = UiAdapters.spinner(requireContext(), listaRegEliminar)
+                    bg!!.spnEliminar.setAdapter(adaptador)
                     cursor.close()
                     db!!.close()
                 }

@@ -106,6 +106,7 @@
                         <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etDescOtros" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="7.0" android:textAlignment="textStart" />
                     </TableRow>
                 </TableLayout>
+                <include layout="@layout/include_photo_upload" android:layout_width="match_parent" android:layout_height="wrap_content" />
                 <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
                     <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
                 </LinearLayout>

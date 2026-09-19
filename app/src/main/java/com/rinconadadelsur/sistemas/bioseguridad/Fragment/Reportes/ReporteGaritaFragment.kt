@@ -54,8 +54,7 @@ class ReporteGaritaFragment : Fragment() {
     var hV: hVariables? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var querys: String? = null
 
@@ -73,7 +72,7 @@ class ReporteGaritaFragment : Fragment() {
         bg = FragmentReporteGaritaBinding.bind(view)
 
         /*<!-- TODO: DATA -->*/
-        dbE = dbEstructura()
+        
         ensureDemoData(requireContext())
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
         conn = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)

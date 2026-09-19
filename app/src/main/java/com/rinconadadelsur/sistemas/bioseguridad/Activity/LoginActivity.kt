@@ -39,10 +39,7 @@ class LoginActivity : AppCompatActivity() {
     var sestado: String? = null
     var sCodClv: String? = null
     var sNomClv: String? = null
-
-
-    var dbE: dbEstructura? = null
-    var hM: hMetodos? = null
+var hM: hMetodos? = null
     var hV: hVariables? = null
 
     var conn: ConexionSQLiteHelper? = null
@@ -62,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(bg!!.getRoot())
 
         //Todo: DATA
-        dbE = dbEstructura()
+        
         hM = hMetodos()
         conn = ConexionSQLiteHelper(this, dbEstructura.miBaseDatos, null, 1)
 
@@ -128,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
         val requestBody = ""
 
 
-        val jsonArrayRequest = JsonArrayRequest(URL, object : Response.Listener<JSONArray?> {
+        val jsonArrayRequest = JsonArrayRequest(URL, object : Response.Listener<JSONArray> {
             override fun onResponse(response: JSONArray) {
                 try {
                     var jsonObject: JSONObject? = null

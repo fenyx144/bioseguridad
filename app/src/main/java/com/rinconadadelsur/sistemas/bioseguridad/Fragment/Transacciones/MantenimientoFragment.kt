@@ -1,4 +1,5 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.UiAdapters
 
 import android.content.DialogInterface
 import android.database.sqlite.SQLiteDatabase
@@ -68,8 +69,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
     var hV: hVariables? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var querys: String? = null
 
@@ -823,9 +823,8 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                                 .get_descripcion()
                         )
                     }
-                    val adaptador: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listaRegEliminar)
-                    bg!!.spnEliminar.setAdapter<ArrayAdapter<CharSequence?>?>(adaptador)
+                    val adaptador = UiAdapters.spinner(requireContext(), listaRegEliminar)
+                    bg!!.spnEliminar.setAdapter(adaptador)
                     cursor.close()
                     db!!.close()
                 }
@@ -841,8 +840,8 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
     }
 
     override fun onClick(v: View) {
-        when (v.getId()) {
-            R.id.swtCajaFormol -> if (bg!!.swtCajaFormol.isChecked()) {
+        when {
+            v.id == R.id.swtCajaFormol -> if (bg!!.swtCajaFormol.isChecked()) {
                 bg!!.swtCajaFormol.setText("Si")
                 bg!!.etCajaFormol.setEnabled(true)
             } else {
@@ -851,7 +850,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etCajaFormol.setText("")
             }
 
-            R.id.swtComedor -> if (bg!!.swtComedor.isChecked()) {
+            v.id == R.id.swtComedor -> if (bg!!.swtComedor.isChecked()) {
                 bg!!.swtComedor.setText("Si")
                 bg!!.etComedor.setEnabled(true)
             } else {
@@ -860,7 +859,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etComedor.setText("")
             }
 
-            R.id.swtDucha -> if (bg!!.swtDucha.isChecked()) {
+            v.id == R.id.swtDucha -> if (bg!!.swtDucha.isChecked()) {
                 bg!!.swtDucha.setText("Si")
                 bg!!.etDucha.setEnabled(true)
             } else {
@@ -869,7 +868,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etDucha.setText("")
             }
 
-            R.id.swtEstructuraGarita -> if (bg!!.swtEstructuraGarita.isChecked()) {
+            v.id == R.id.swtEstructuraGarita -> if (bg!!.swtEstructuraGarita.isChecked()) {
                 bg!!.swtEstructuraGarita.setText("Si")
                 bg!!.etEstructuraGarita.setEnabled(true)
             } else {
@@ -878,7 +877,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etEstructuraGarita.setText("")
             }
 
-            R.id.swtMedidorAgua -> if (bg!!.swtMedidorAgua.isChecked()) {
+            v.id == R.id.swtMedidorAgua -> if (bg!!.swtMedidorAgua.isChecked()) {
                 bg!!.swtMedidorAgua.setText("Si")
                 bg!!.etMedidorAgua.setEnabled(true)
             } else {
@@ -887,7 +886,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etMedidorAgua.setText("")
             }
 
-            R.id.swtPuertaPersonal -> if (bg!!.swtPuertaPersonal.isChecked()) {
+            v.id == R.id.swtPuertaPersonal -> if (bg!!.swtPuertaPersonal.isChecked()) {
                 bg!!.swtPuertaPersonal.setText("Si")
                 bg!!.etPuertaPersonal.setEnabled(true)
             } else {
@@ -896,7 +895,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etPuertaPersonal.setText("")
             }
 
-            R.id.swtPuertaPozoSeptico -> if (bg!!.swtPuertaPozoSeptico.isChecked()) {
+            v.id == R.id.swtPuertaPozoSeptico -> if (bg!!.swtPuertaPozoSeptico.isChecked()) {
                 bg!!.swtPuertaPozoSeptico.setText("Si")
                 bg!!.etPuertaPozoSeptico.setEnabled(true)
             } else {
@@ -905,7 +904,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etPuertaPozoSeptico.setText("")
             }
 
-            R.id.swtPuertaVehicular -> if (bg!!.swtPuertaVehicular.isChecked()) {
+            v.id == R.id.swtPuertaVehicular -> if (bg!!.swtPuertaVehicular.isChecked()) {
                 bg!!.swtPuertaVehicular.setText("Si")
                 bg!!.etPuertaVehicular.setEnabled(true)
             } else {
@@ -914,7 +913,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etPuertaVehicular.setText("")
             }
 
-            R.id.swtSSHH -> if (bg!!.swtSSHH.isChecked()) {
+            v.id == R.id.swtSSHH -> if (bg!!.swtSSHH.isChecked()) {
                 bg!!.swtSSHH.setText("Si")
                 bg!!.etSSHH.setEnabled(true)
             } else {
@@ -923,7 +922,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etSSHH.setText("")
             }
 
-            R.id.swtTableroControl -> if (bg!!.swtTableroControl.isChecked()) {
+            v.id == R.id.swtTableroControl -> if (bg!!.swtTableroControl.isChecked()) {
                 bg!!.swtTableroControl.setText("Si")
                 bg!!.etTableroControl.setEnabled(true)
             } else {
@@ -932,7 +931,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTableroControl.setText("")
             }
 
-            R.id.swtTachoRopa -> if (bg!!.swtTachoRopa.isChecked()) {
+            v.id == R.id.swtTachoRopa -> if (bg!!.swtTachoRopa.isChecked()) {
                 bg!!.swtTachoRopa.setText("Si")
                 bg!!.etTachoRopa.setEnabled(true)
             } else {
@@ -941,7 +940,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTachoRopa.setText("")
             }
 
-            R.id.swtTherma -> if (bg!!.swtTherma.isChecked()) {
+            v.id == R.id.swtTherma -> if (bg!!.swtTherma.isChecked()) {
                 bg!!.swtTherma.setText("Si")
                 bg!!.etTherma.setEnabled(true)
             } else {
@@ -950,7 +949,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTherma.setText("")
             }
 
-            R.id.swtTuberiaAgua -> if (bg!!.swtTuberiaAgua.isChecked()) {
+            v.id == R.id.swtTuberiaAgua -> if (bg!!.swtTuberiaAgua.isChecked()) {
                 bg!!.swtTuberiaAgua.setText("Si")
                 bg!!.etTuberiaAgua.setEnabled(true)
             } else {
@@ -959,7 +958,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etTuberiaAgua.setText("")
             }
 
-            R.id.swtOtros -> if (bg!!.swtOtros.isChecked()) {
+            v.id == R.id.swtOtros -> if (bg!!.swtOtros.isChecked()) {
                 bg!!.swtOtros.setText("Si")
                 bg!!.etOtros.setEnabled(true)
                 bg!!.etDescOtros.setEnabled(true)
@@ -971,7 +970,7 @@ class MantenimientoFragment  /*<!-- TODO: LISTAS-ENTIDADES -->*/
                 bg!!.etDescOtros.setText("")
             }
 
-            R.id.btnAgregar -> {
+            v.id == R.id.btnAgregar -> {
                 sFecha = bg!!.tvFecha.getText().toString()
                 sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
                 if (iPosiTur == -1) {

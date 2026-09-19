@@ -13,10 +13,6 @@
         android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.GaritaFragment"
         android:label="@string/menu_Garita" />
     <fragment
-        android:id="@+id/nav_Mantenimiento"
-        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.MantenimientoFragment"
-        android:label="@string/menu_Mantenimiento" />
-    <fragment
         android:id="@+id/nav_CercoElectrico"
         android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.CercoElectricoFragment"
         android:label="@string/menu_CercoElectrico" />
@@ -28,10 +24,6 @@
         android:id="@+id/nav_ReporteGarita"
         android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteGaritaFragment"
         android:label="@string/menu_RepGarita" />
-    <fragment
-        android:id="@+id/nav_ReporteMantenimiento"
-        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteMantenimientoFragment"
-        android:label="@string/menu_RepMantenimiento" />
     <fragment
         android:id="@+id/nav_ReporteCerco"
         android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteCercoFragment"

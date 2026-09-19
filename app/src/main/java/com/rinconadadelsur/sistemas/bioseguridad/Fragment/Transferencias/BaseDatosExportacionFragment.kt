@@ -80,8 +80,7 @@ class BaseDatosExportacionFragment : Fragment() {
 
     var hP: hProcedimiento? = null
     var hV: hVariables? = null
-    var dbE: dbEstructura? = null
-    var hTJ: hTransferenciaJson? = null
+var hTJ: hTransferenciaJson? = null
 
     var sNombreUsuario: String? = null
     var sCodigoUsuario: String? = null
@@ -315,7 +314,7 @@ class BaseDatosExportacionFragment : Fragment() {
                 result = e.message
                 sNumError = "1"
             }
-            return arrayOf<String?>(result, sNumError)
+            return arrayOf(result ?: "", sNumError ?: "0")
         }
     }
 }

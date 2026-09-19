@@ -1,4 +1,5 @@
 package com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.UiAdapters
 
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
@@ -26,6 +27,7 @@ import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eProcesos
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eReferencias
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eRegEliminar
 import com.rinconadadelsur.sistemas.bioseguridad.Entidades.eTipo
+import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.PhotoUploadUi
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hMetodos
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hProcedimiento
 import com.rinconadadelsur.sistemas.bioseguridad.Herramientas.hVariables
@@ -84,8 +86,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
     var hV: hVariables? = null
 
     /*<!-- TODO: CONEXION -->*/
-    var dbE: dbEstructura? = null
-    var conn: ConexionSQLiteHelper? = null
+var conn: ConexionSQLiteHelper? = null
     var db: SQLiteDatabase? = null
     var querys: String? = null
 
@@ -125,6 +126,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         bg = FragmentFomitesBinding.bind(view)
+        PhotoUploadUi.bind(this, view)
 
         /*<!-- TODO: DATA -->*/
         hP = hProcedimiento(getContext(), dbEstructura.miBaseDatos, null, 1)
@@ -691,35 +693,25 @@ class FomitesFragment : Fragment(), View.OnClickListener {
     }
 
     private fun inicializarCampos() {
-        val r: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listReferencia)
-        val p: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listProceso)
-        val rb: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listResponsable)
-        val zo: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listZ)
-        val pe: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listP)
-        val ga: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listG)
-        val le: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listL)
-        val gat: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listGa)
-        val co: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listC)
-        val pal: ArrayAdapter<CharSequence?> =
-            ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listPa)
+        val r = UiAdapters.spinner(requireContext(), listReferencia)
+        val p = UiAdapters.spinner(requireContext(), listProceso)
+        val rb = UiAdapters.spinner(requireContext(), listResponsable)
+        val zo = UiAdapters.spinner(requireContext(), listZ)
+        val pe = UiAdapters.spinner(requireContext(), listP)
+        val ga = UiAdapters.spinner(requireContext(), listG)
+        val le = UiAdapters.spinner(requireContext(), listL)
+        val gat = UiAdapters.spinner(requireContext(), listGa)
+        val co = UiAdapters.spinner(requireContext(), listC)
+        val pal = UiAdapters.spinner(requireContext(), listPa)
 
 
         bg!!.spnTurno.setSelection(0)
         bg!!.spnTurno.setEnabled(true)
 
-        bg!!.spnReferencia.setAdapter<ArrayAdapter<CharSequence?>?>(r)
+        bg!!.spnReferencia.setAdapter(r)
         bg!!.spnReferencia.setEnabled(true)
 
-        bg!!.spnProceso.setAdapter<ArrayAdapter<CharSequence?>?>(p)
+        bg!!.spnProceso.setAdapter(p)
         bg!!.spnProceso.setEnabled(true)
 
 
@@ -913,9 +905,8 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in ReferenciaList!!.indices) {
                         listReferencia!!.add(ReferenciaList!!.get(i)!!.get_descripcion())
                     }
-                    val r: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listReferencia)
-                    bg!!.spnReferencia.setAdapter<ArrayAdapter<CharSequence?>?>(r)
+                    val r = UiAdapters.spinner(requireContext(), listReferencia)
+                    bg!!.spnReferencia.setAdapter(r)
                     cursor.close()
                     db!!.close()
                 } else {
@@ -959,9 +950,8 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in ProcesoList!!.indices) {
                         listProceso!!.add(ProcesoList!!.get(i)!!.get_descripcion())
                     }
-                    val p: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listProceso)
-                    bg!!.spnProceso.setAdapter<ArrayAdapter<CharSequence?>?>(p)
+                    val p = UiAdapters.spinner(requireContext(), listProceso)
+                    bg!!.spnProceso.setAdapter(p)
                     cursor.close()
                     db!!.close()
                 } else {
@@ -1005,8 +995,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in ZList!!.indices) {
                         listZ!!.add(ZList!!.get(i)!!.get_descripcion())
                     }
-                    val zo: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listZ)
+                    val zo = UiAdapters.spinner(requireContext(), listZ)
                     bg!!.spnZorro.setAdapter(zo)
                     cursor.close()
                     db!!.close()
@@ -1051,8 +1040,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in PList!!.indices) {
                         listP!!.add(PList!!.get(i)!!.get_descripcion())
                     }
-                    val pe: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listP)
+                    val pe = UiAdapters.spinner(requireContext(), listP)
                     bg!!.spnPerro.setAdapter(pe)
                     cursor.close()
                     db!!.close()
@@ -1097,8 +1085,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in GList!!.indices) {
                         listG!!.add(GList!!.get(i)!!.get_descripcion())
                     }
-                    val ga: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listG)
+                    val ga = UiAdapters.spinner(requireContext(), listG)
                     bg!!.spnGallinazo.setAdapter(ga)
                     cursor.close()
                     db!!.close()
@@ -1143,8 +1130,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in LList!!.indices) {
                         listL!!.add(LList!!.get(i)!!.get_descripcion())
                     }
-                    val le: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listL)
+                    val le = UiAdapters.spinner(requireContext(), listL)
                     bg!!.spnLechuza.setAdapter(le)
                     cursor.close()
                     db!!.close()
@@ -1189,8 +1175,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in GaList!!.indices) {
                         listGa!!.add(GaList!!.get(i)!!.get_descripcion())
                     }
-                    val gat: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listGa)
+                    val gat = UiAdapters.spinner(requireContext(), listGa)
                     bg!!.spnGato.setAdapter(gat)
                     cursor.close()
                     db!!.close()
@@ -1235,8 +1220,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in CList!!.indices) {
                         listC!!.add(CList!!.get(i)!!.get_descripcion())
                     }
-                    val co: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listC)
+                    val co = UiAdapters.spinner(requireContext(), listC)
                     bg!!.spnConejo.setAdapter(co)
                     cursor.close()
                     db!!.close()
@@ -1281,8 +1265,7 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                     for (i in PaList!!.indices) {
                         listPa!!.add(PaList!!.get(i)!!.get_descripcion())
                     }
-                    val pal: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listPa)
+                    val pal = UiAdapters.spinner(requireContext(), listPa)
                     bg!!.spnPaloma.setAdapter(pal)
                     cursor.close()
                     db!!.close()
@@ -1610,9 +1593,8 @@ class FomitesFragment : Fragment(), View.OnClickListener {
                                 .get_descripcion()
                         )
                     }
-                    val adaptador: ArrayAdapter<CharSequence?> =
-                        ArrayAdapter<Any?>(getContext()!!, R.layout.items_list, listaRegEliminar)
-                    bg!!.spnEliminar.setAdapter<ArrayAdapter<CharSequence?>?>(adaptador)
+                    val adaptador = UiAdapters.spinner(requireContext(), listaRegEliminar)
+                    bg!!.spnEliminar.setAdapter(adaptador)
                     cursor.close()
                     db!!.close()
                 }
@@ -1628,50 +1610,50 @@ class FomitesFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when (v.getId()) {
-            R.id.swtZorro -> if (bg!!.swtZorro.isChecked()) {
+        when {
+            v.id == R.id.swtZorro -> if (bg!!.swtZorro.isChecked()) {
                 bg!!.swtZorro.setText("Si")
             } else {
                 bg!!.swtZorro.setText("No")
             }
 
-            R.id.swtPerro -> if (bg!!.swtPerro.isChecked()) {
+            v.id == R.id.swtPerro -> if (bg!!.swtPerro.isChecked()) {
                 bg!!.swtPerro.setText("Si")
             } else {
                 bg!!.swtPerro.setText("No")
             }
 
-            R.id.swtGallinazo -> if (bg!!.swtGallinazo.isChecked()) {
+            v.id == R.id.swtGallinazo -> if (bg!!.swtGallinazo.isChecked()) {
                 bg!!.swtGallinazo.setText("Si")
             } else {
                 bg!!.swtGallinazo.setText("No")
             }
 
-            R.id.swtLechuza -> if (bg!!.swtLechuza.isChecked()) {
+            v.id == R.id.swtLechuza -> if (bg!!.swtLechuza.isChecked()) {
                 bg!!.swtLechuza.setText("Si")
             } else {
                 bg!!.swtLechuza.setText("No")
             }
 
-            R.id.swtGato -> if (bg!!.swtGato.isChecked()) {
+            v.id == R.id.swtGato -> if (bg!!.swtGato.isChecked()) {
                 bg!!.swtGato.setText("Si")
             } else {
                 bg!!.swtGato.setText("No")
             }
 
-            R.id.swtConejo -> if (bg!!.swtConejo.isChecked()) {
+            v.id == R.id.swtConejo -> if (bg!!.swtConejo.isChecked()) {
                 bg!!.swtConejo.setText("Si")
             } else {
                 bg!!.swtConejo.setText("No")
             }
 
-            R.id.swtPaloma -> if (bg!!.swtPaloma.isChecked()) {
+            v.id == R.id.swtPaloma -> if (bg!!.swtPaloma.isChecked()) {
                 bg!!.swtPaloma.setText("Si")
             } else {
                 bg!!.swtPaloma.setText("No")
             }
 
-            R.id.btnAgregar -> {
+            v.id == R.id.btnAgregar -> {
                 sFecha = bg!!.tvFecha.getText().toString()
                 sCencos = bg!!.etCencos.getText().toString().substring(0, 6)
                 if (iPosiTur == -1) {

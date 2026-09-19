@@ -39,8 +39,8 @@
     <color name="colorAccent">#f4c349</color>
     <color name="colorGalponHabilitado">#009688</color>
     <color name="colorGalponInabilitado">#d2efed</color>
-    <color name="colorPrimary">#61c0dd</color>
-    <color name="colorPrimaryDark">#61c0dd</color>
+    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#cf6679</color>
