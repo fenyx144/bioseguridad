@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_date" />
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/etCencos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cencos" android:inputType="textPersonName" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_cencos" />
+                </LinearLayout>
+            </TableLayout>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*" style="@style/MyEditTextStyle">
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvTurno" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Turno" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnTurno" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selec" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvReferencia" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Referencia" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnReferencia" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selec" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvProceso" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Proceso" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnProceso" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selec" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
+            </HorizontalScrollView>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp">
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center_vertical" android:id="@+id/tvDepredador" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DEPREDADOR" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvTipo" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="TIPO" android:textAlignment="center" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvCantidad" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="CANTIDAD" android:textAlignment="center" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvHora" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="HORA" android:textAlignment="center" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvDentroCE" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="¿D.Del Cerco?" android:textAlignment="center" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvZorro" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Zorro" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnZorro" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etZorro" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etZorroHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtZorro" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvPerro" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Perro" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnPerro" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etPerro" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etPerroHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtPerro" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvGallinazo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Gallinazo" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnGallinazo" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etGallinazo" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etGallinazoHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtGallinazo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvLechuza" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lechuza" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnLechuza" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etLechuza" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etLechuzaHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtLechuza" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvGato" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Gato" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnGato" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etGato" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etGatoHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtGato" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvConejo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Conejo" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnConejo" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etConejo" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etConejoHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtConejo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvPaloma" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Paloma" android:textAlignment="viewStart" />
+                        <Spinner android:textStyle="bold" android:id="@+id/spnPaloma" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                        <EditText android:textColorHighlight="#555759" android:id="@+id/etPaloma" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:textAlignment="center" />
+                        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/verde" android:textColorHint="#20c636" android:id="@+id/etPalomaHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="00:00" android:textAlignment="center" />
+                        <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtPaloma" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                    </TableRow>
+                </TableLayout>
+            </HorizontalScrollView>
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvObservacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dp" android:hint="Observación" android:textAlignment="textStart" android:layout_marginEnd="5.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:textSize="20.0sp" android:id="@+id/etObservacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapCharacters" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
+                <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
+            </LinearLayout>
+            <TableLayout android:id="@+id/tlDelete" android:layout_width="match_parent" android:layout_height="match_parent" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Eliminar Datos" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <Button android:enabled="true" android:textSize="15.0sp" android:id="@+id/btnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Eliminar" android:drawableLeft="@drawable/ic_delete" android:layout_marginStart="10.0dp" android:drawableTint="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableLayout>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TableLayout android:id="@+id/tlRegFomites" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

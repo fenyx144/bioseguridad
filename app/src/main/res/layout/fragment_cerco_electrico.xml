@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_date" />
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/etCencos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cencos" android:inputType="textPersonName" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_cencos" />
+                </LinearLayout>
+            </TableLayout>
+            <TableLayout android:id="@+id/tlRegistro" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*" style="@style/MyEditTextStyle">
+                <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvTurno" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Turno" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                        <AutoCompleteTextView android:id="@+id/spnTurno" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </TableRow>
+            </TableLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/llIngreso" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvIzquieda" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Izquierda" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                        <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnIzquierda" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/llSalida" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvDerecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Derecha" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                        <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnDerecha" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvMOtivoIzq" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Motivo" android:textAlignment="textStart" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText android:textSize="20.0sp" android:id="@+id/etMOtivoIzq" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapCharacters" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvMOtivoDer" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Motivo" android:textAlignment="textStart" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText android:textSize="20.0sp" android:id="@+id/etMOtivoDer" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapCharacters" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <TableLayout android:id="@+id/tlRegistro3" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*" style="@style/MyEditTextStyle">
+                <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvHoraIni" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Hora Inicio" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_time" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                        <AutoCompleteTextView android:id="@+id/etHoraIni" android:layout_width="match_parent" android:layout_height="match_parent" android:text="00:00" android:layout_weight="1.0" android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvHoraFin" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Hora Fin" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_time" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                        <AutoCompleteTextView android:id="@+id/etHoraFin" android:layout_width="match_parent" android:layout_height="match_parent" android:text="00:00" android:layout_weight="1.0" android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </TableRow>
+                <TableLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="10.0dp">
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center_vertical" android:id="@+id/tvMedida" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="40.0dp" android:text="COMPONENTE" android:layout_weight="1.0" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvFallo" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="match_parent" android:text="¿FALLÓ?" android:layout_weight="1.0" />
+                        <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvDescripcion" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="match_parent" android:text="DESCRIPCION" android:layout_weight="7.0" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvArgolla" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Argolla" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtArgolla" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etArgolla" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvBateria" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Batería" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtBateria" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etBateria" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvFocoTablero" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Foco de Tablero" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtFocoTablero" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etFocoTablero" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvLineas" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Líneas" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtLineas" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etLineas" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvPina" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Piña" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtPina" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etPina" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvSirena" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Sirena" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtSirena" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etSirena" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvTablero" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tablero" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtTablero" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTablero" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvTempladorAislador" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Templador/Aislador" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtTempladorAislador" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTempladorAislador" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textStyle="bold" android:id="@+id/tvTransformador" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Transformador" android:layout_weight="1.0" android:textAlignment="viewStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtTransformador" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTransformador" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <EditText android:textColorHighlight="#1e88e5" android:id="@+id/etOtros" android:layout_width="match_parent" android:layout_height="match_parent" android:hint="Otros" android:layout_weight="1.0" android:inputType="text" android:textAlignment="textStart" />
+                        <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtOtros" android:layout_width="match_parent" android:layout_height="match_parent" android:text="No" android:layout_weight="1.0" />
+                        <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etDescOtros" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="7.0" android:textAlignment="textStart" />
+                    </TableRow>
+                </TableLayout>
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
+                    <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
+                </LinearLayout>
+                <HorizontalScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+                        <TableLayout android:id="@+id/tlRegCercoElectrico" android:layout_width="wrap_content" android:layout_height="match_parent" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

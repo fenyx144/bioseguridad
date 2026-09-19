@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dp" android:layout_marginStart="20.0dp" android:layout_marginEnd="20.0dp">
+        <TableLayout android:layout_width="match_parent" android:layout_height="match_parent" style="@style/MyEditTextStyle">
+            <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="10.0dp">
+                <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:id="@+id/tvFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sFecha" android:maxLines="1" android:drawablePadding="5.0dp" android:layout_marginStart="15.0dp" android:drawableTint="@color/dorado" app:drawableStartCompat="@drawable/ic_date" />
+                <TextView android:enabled="false" android:textAppearance="@style/estilo_contenido_Fragment_brown" android:id="@+id/tvNombreUsuario" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Nombre Responsable" android:inputType="date" android:layout_marginStart="15.0dp" android:drawableTint="@color/dorado" app:drawableStartCompat="@drawable/ic_person" />
+            </TableRow>
+        </TableLayout>
+        <TextView android:textSize="25.0sp" android:textStyle="bold" android:textColor="@color/white" android:id="@+id/tvExportar" android:background="@drawable/boton_app" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dp" android:text="@string/epDatos" />
+        <TextView android:textSize="20.0sp" android:textStyle="italic" android:id="@+id/tvRespuestaServidor" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dp" android:layout_marginBottom="30.0dp" android:hint="Respuesta server" />
+    </LinearLayout>
+</RelativeLayout>

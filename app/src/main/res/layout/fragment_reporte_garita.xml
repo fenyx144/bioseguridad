@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*" style="@style/MyEditTextStyle">
+                <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:enabled="false" android:textAppearance="@style/estilo_contenido_Fragment_black" android:gravity="center_vertical" android:id="@+id/etCencos" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Cencos" android:drawablePadding="5.0dp" android:inputType="textPersonName" android:layout_marginStart="5.0dp" android:drawableTint="@color/purple_500" app:drawableStartCompat="@drawable/ic_cencos" />
+                </TableRow>
+                <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dp">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:gravity="center_vertical" android:id="@+id/tvFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawablePadding="5.0dp" android:layout_marginStart="5.0dp" android:drawableTint="@color/purple_500" app:drawableStartCompat="@drawable/ic_date" />
+                </TableRow>
+            </TableLayout>
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <HorizontalScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+                        <TableLayout android:id="@+id/tlRepGarita" android:layout_width="match_parent" android:layout_height="match_parent" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

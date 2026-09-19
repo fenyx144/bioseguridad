@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:layout_marginStart="20.0dp" android:layout_marginEnd="20.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:maxLines="1" android:drawablePadding="5.0dp" android:layout_marginStart="15.0dp" android:drawableTint="@color/purple_500" app:drawableStartCompat="@drawable/ic_date" />
+                    <TextView android:enabled="false" android:textAppearance="@style/estilo_contenido_Fragment_brown" android:id="@+id/tvNombreUsuario" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nombre Responsable" android:inputType="date" android:layout_marginStart="15.0dp" android:drawableTint="@color/purple_500" app:drawableStartCompat="@drawable/ic_person" />
+                </TableRow>
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvCencos" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Cencos" android:layout_marginStart="10.0dp" android:layout_marginEnd="32.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    <AutoCompleteTextView android:id="@+id/spnCencos" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </TableLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <Button android:textSize="22.0sp" android:layout_gravity="center" android:id="@+id/btnImportar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:layout_marginBottom="10.0dp" android:text="@string/ipDatos" android:layout_marginStart="15.0dp" android:layout_marginEnd="15.0dp" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="20.0sp" android:textStyle="italic" android:textColor="@color/purple_500" android:id="@+id/tvRespuestaServidor" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Respuesta server" android:layout_marginStart="15.0dp" android:layout_marginEnd="15.0dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

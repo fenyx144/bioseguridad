@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_presentacion">
+
+    <fragment
+        android:id="@+id/nav_presentacion"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Activity.PresentacionFragment"
+        android:label="@string/menu_Home" />
+    <fragment
+        android:id="@+id/nav_Garita"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.GaritaFragment"
+        android:label="@string/menu_Garita" />
+    <fragment
+        android:id="@+id/nav_Mantenimiento"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.MantenimientoFragment"
+        android:label="@string/menu_Mantenimiento" />
+    <fragment
+        android:id="@+id/nav_CercoElectrico"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.CercoElectricoFragment"
+        android:label="@string/menu_CercoElectrico" />
+    <fragment
+        android:id="@+id/nav_Fomites"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transacciones.FomitesFragment"
+        android:label="@string/menu_Fomites" />
+    <fragment
+        android:id="@+id/nav_ReporteGarita"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteGaritaFragment"
+        android:label="@string/menu_RepGarita" />
+    <fragment
+        android:id="@+id/nav_ReporteMantenimiento"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteMantenimientoFragment"
+        android:label="@string/menu_RepMantenimiento" />
+    <fragment
+        android:id="@+id/nav_ReporteCerco"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteCercoFragment"
+        android:label="@string/menu_RepCercoElectrico" />
+    <fragment
+        android:id="@+id/nav_ReporteFomites"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Reportes.ReporteFomitesFragment"
+        android:label="@string/menu_RepFomites" />
+    <fragment
+        android:id="@+id/nav_ImportarDB"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transferencias.BaseDatosImportacionFragment"
+        android:label="@string/menu_Importacion" />
+    <fragment
+        android:id="@+id/nav_ExportarDB"
+        android:name="com.rinconadadelsur.sistemas.bioseguridad.Fragment.Transferencias.BaseDatosExportacionFragment"
+        android:label="@string/menu_Exportacion" />
+</navigation>

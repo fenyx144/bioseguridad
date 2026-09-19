@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_date" />
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/etCencos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cencos" android:inputType="textPersonName" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_cencos" />
+                </LinearLayout>
+            </TableLayout>
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/llIngreso" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvTurno" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Turno" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnTurno" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/llSalida" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvNumFiltro" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="N°Filtro" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnNumFiltro" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvAnomalia" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Anomalía" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnAnomalia" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Hora" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:startIconDrawable="@drawable/ic_time" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/etHora" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="00:00" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" />
+                </TableLayout>
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Descripción" android:textAlignment="textStart" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:textSize="15.0sp" android:id="@+id/etDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvAgenteCausal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:hint="Agente Causal" android:textAlignment="textStart" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:counterMaxLength="2" app:endIconMode="clear_text" app:helperTextTextColor="#ff0001" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:startIconDrawable="@drawable/ic_pin_24" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:textSize="15.0sp" android:id="@+id/etAgenteCausal" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </TableLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
+                <Button android:textSize="15.0sp" android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
+            </LinearLayout>
+            <TableLayout android:id="@+id/tlDelete" android:layout_width="match_parent" android:layout_height="match_parent" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Eliminar Datos" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <Button android:enabled="true" android:textSize="15.0sp" android:id="@+id/btnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Eliminar" android:drawableLeft="@drawable/ic_delete" android:layout_marginStart="10.0dp" android:drawableTint="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableLayout>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TableLayout android:id="@+id/tlRegGarita" android:layout_width="wrap_content" android:layout_height="match_parent" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

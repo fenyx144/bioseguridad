@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="Transacciones">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item android:icon="@drawable/ia_garita" android:id="@id/nav_Garita" android:title="Garita" />
+                    <item android:icon="@drawable/ia_mantenimiento" android:id="@id/nav_Mantenimiento" android:title="Mantenimiento" />
+                    <item android:icon="@drawable/ia_cerco" android:id="@id/nav_CercoElectrico" android:title="Cerco Electrico" />
+                    <item android:icon="@drawable/ia_fomites" android:id="@id/nav_Fomites" android:title="Fomites" />
+                </group>
+            </menu>
+        </item>
+        <item android:title="Reportes">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item android:icon="@drawable/ia_reporte" android:id="@id/nav_ReporteGarita" android:title="Reportes de Garita" />
+                    <item android:icon="@drawable/ia_reporte" android:id="@id/nav_ReporteMantenimiento" android:title="Reportes de Mantenimiento" />
+                    <item android:icon="@drawable/ia_reporte" android:id="@id/nav_ReporteCerco" android:title="Reportes de Cerco Electrico" />
+                    <item android:icon="@drawable/ia_reporte" android:id="@id/nav_ReporteFomites" android:title="Reportes de Fomites" />
+                </group>
+            </menu>
+        </item>
+        <item android:title="Base de Datos">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item android:icon="@drawable/ia_importar" android:id="@id/nav_ImportarDB" android:title="Importar" />
+                    <item android:icon="@drawable/ia_exportar" android:id="@id/nav_ExportarDB" android:title="Exportar" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>

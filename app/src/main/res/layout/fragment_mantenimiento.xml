@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dp" android:layout_marginRight="10.0dp">
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/tvFecha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sFecha" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_date" />
+                    <TextView android:textAppearance="@style/estilo_contenido_Fragment_black" android:textSize="15.0sp" android:id="@+id/etCencos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cencos" android:inputType="textPersonName" android:drawableTint="@color/colorPrimary" app:drawableStartCompat="@drawable/ic_cencos" />
+                </LinearLayout>
+            </TableLayout>
+            <TableLayout android:layout_width="match_parent" android:layout_height="match_parent" style="@style/MyEditTextStyle">
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/tvTurno" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Turno" android:layout_marginStart="10.0dp" android:layout_marginEnd="10.0dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnTurno" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Seleccione" android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <HorizontalScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:stretchColumns="2">
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center_vertical" android:id="@+id/tvMedida" android:background="@color/azulino" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ELEMENTO" />
+                            <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvFallo" android:background="@color/azulino" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="¿FALLÓ?" />
+                            <TextView android:textStyle="bold" android:textColor="@color/blanco" android:gravity="center" android:id="@+id/tvDescripcion" android:background="@color/azulino" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DESCRIPCIÓN" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvCajaFormol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Caja de Formol" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtCajaFormol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etCajaFormol" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvComedor" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Comedor" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtComedor" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etComedor" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvDucha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ducha" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtDucha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etDucha" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvEstructuraGarita" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Estructura" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtEstructuraGarita" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etEstructuraGarita" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvMedidorAgua" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Medidor de Agua" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtMedidorAgua" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etMedidorAgua" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvPuertaPersonal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Puerta" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtPuertaPersonal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etPuertaPersonal" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvPuertaPozoSeptico" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Puerta Pozo Séptico" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtPuertaPozoSeptico" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etPuertaPozoSeptico" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvPuertaVehicular" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Puerta Vehicular" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtPuertaVehicular" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etPuertaVehicular" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvSSHH" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SS.HH" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtSSHH" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etSSHH" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvTableroControl" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tablero de Control" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtTableroControl" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTableroControl" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvTachoRopa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tachos de Ropa" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtTachoRopa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTachoRopa" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvTherma" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terma" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtTherma" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTherma" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <TextView android:textStyle="bold" android:id="@+id/tvTuberiaAgua" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tubería de Agua" android:textAlignment="viewStart" />
+                            <Switch android:textStyle="bold" android:gravity="center" android:id="@+id/swtTuberiaAgua" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etTuberiaAgua" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                            <EditText android:textColorHighlight="#1e88e5" android:id="@+id/etOtros" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Otros" android:inputType="textCapSentences" android:textAlignment="textStart" />
+                            <Switch android:textSize="12.0sp" android:textStyle="bold" android:gravity="center" android:id="@+id/swtOtros" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No" />
+                            <EditText android:textSize="13.0sp" android:textColorHighlight="#1e88e5" android:id="@+id/etDescOtros" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textAutoComplete|textMultiLine" android:textAlignment="textStart" />
+                        </TableRow>
+                    </TableLayout>
+                </HorizontalScrollView>
+            </TableLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="40.0dp" android:layout_marginEnd="40.0dp">
+                <Button android:id="@+id/btnAgregar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="AGREGAR" android:drawableEnd="@drawable/ic_add" />
+            </LinearLayout>
+            <TableLayout android:id="@+id/tlDelete" android:layout_width="match_parent" android:layout_height="match_parent" style="@style/MyEditTextStyle">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Eliminar Datos" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            <AutoCompleteTextView android:textSize="15.0sp" android:id="@+id/spnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Seleccione" android:layout_weight="1.0" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <Button android:enabled="true" android:textSize="15.0sp" android:id="@+id/btnEliminar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Eliminar" android:drawableLeft="@drawable/ic_delete" android:layout_marginStart="10.0dp" android:drawableTint="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableLayout>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TableLayout android:id="@+id/tlRegMantenimiento" android:layout_width="wrap_content" android:layout_height="match_parent" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
