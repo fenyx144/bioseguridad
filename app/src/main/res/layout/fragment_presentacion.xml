@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView android:textSize="50.0sp" android:gravity="center" android:id="@+id/cabe" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="BIENVENIDO" />
-    <ImageView android:id="@+id/ivLogo" android:layout_width="180.0dp" android:layout_height="220.0dp" android:layout_marginTop="15.0sp" android:layout_below="@id/cabe" android:layout_centerHorizontal="true" android:contentDescription="@string/app_name" android:scaleType="fitCenter" app:srcCompat="@drawable/logito2" />
-    <TextView android:textSize="24.0sp" android:id="@+id/titulo1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25.0dp" android:text="GRANJA RINCONADA DEL SUR S.A." android:layout_below="@id/ivLogo" android:layout_centerInParent="true" />
-    <TextView android:textSize="20.0sp" android:id="@+id/titulo2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BIOSEGURIDAD" android:layout_below="@id/titulo1" android:layout_centerInParent="true" />
-</RelativeLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/cabe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BIENVENIDO"
+            android:textSize="50sp" />
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="200dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logito2" />
+
+        <TextView
+            android:id="@+id/titulo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="GRANJA RINCONADA DEL SUR S.A."
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/titulo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="BIOSEGURIDAD"
+            android:textSize="20sp" />
+    </LinearLayout>
+</ScrollView>
